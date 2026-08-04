@@ -1,0 +1,70 @@
+name: Download TLC data and update manifest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  download-and-update:
+    name: Download TLC data and update manifest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout jie-long-spark
+        uses: actions/checkout@v4
+        with:
+          ref: jie-long-spark
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Create evidence directory
+        run: mkdir -p evidence/aws
+
+      - name: Run download script
+        run: |
+          python src/download_tlc_data.py 2>&1 | tee evidence/aws/download_output.txt
+
+      - name: Update manifest sizes
+        run: python scripts/update_manifest_sizes.py
+
+      - name: Verify downloaded files
+        run: |
+          test "$(find raw_data -name 'yellow_tripdata_*.parquet' | wc -l)" -eq 24
+          test -s raw_data/taxi_zone_lookup.csv
+          tail -n +2 data/dataset_manifest.csv | wc -l
+
+      - name: Commit updated manifest and download log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/dataset_manifest.csv evidence/aws/download_output.txt
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update dataset manifest with downloaded file sizes [skip ci]"
+            git push origin HEAD:jie-long-spark
+          fi
+
+      - name: Upload downloaded data
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw_data
+          path: raw_data
+          if-no-files-found: error
+
+      - name: Upload dataset manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: dataset_manifest
+          path: data/dataset_manifest.csv
+          if-no-files-found: error
