@@ -1,0 +1,112 @@
+dataset:
+  source_file_pattern: "yellow_tripdata_{year:04d}-{month:02d}.parquet"
+  period:
+    start: "2024-01"
+    end: "2025-12"
+  expected_monthly_files: 24
+
+lookup:
+  join_key: PULocationID
+  join_type: left
+  cardinality: many_to_one
+  required_columns: [LocationID, Borough, Zone, service_zone]
+  output_columns: [pickup_borough, pickup_zone, pickup_service_zone]
+  preserve_unmatched_pickup_rows: true
+
+input_schema:
+  required_columns:
+    - tpep_pickup_datetime
+    - tpep_dropoff_datetime
+    - PULocationID
+    - DOLocationID
+    - passenger_count
+    - trip_distance
+    - fare_amount
+    - tip_amount
+    - total_amount
+    - payment_type
+    - congestion_surcharge
+  optional_columns:
+    airport_fee:
+      accepted_source_names: [airport_fee, Airport_fee]
+      absent_value: null
+    cbd_congestion_fee:
+      accepted_source_names: [cbd_congestion_fee]
+      absent_value: null
+  safely_converted_numeric_columns:
+    - PULocationID
+    - DOLocationID
+    - passenger_count
+    - trip_distance
+    - fare_amount
+    - tip_amount
+    - total_amount
+    - payment_type
+    - congestion_surcharge
+    - airport_fee
+    - cbd_congestion_fee
+
+structural_retention:
+  timestamps_required: true
+  dropoff_must_be_after_pickup: true
+  pickup_period_must_match_source_file: true
+  pickup_and_dropoff_location_ids_required: true
+  trip_duration_minutes:
+    exclusive_minimum: 0
+    inclusive_maximum: 240
+
+quality_counts_before_filtering:
+  - missing_timestamp_rows
+  - invalid_time_order_rows
+  - out_of_month_rows
+  - missing_location_rows
+  - non_positive_distance_rows
+  - non_positive_fare_rows
+  - missing_passenger_rows
+  - zero_passenger_rows
+
+validity_flags:
+  valid_fare: "fare_amount > 0 and total_amount > 0"
+  valid_distance: "trip_distance > 0"
+
+distance_bands:
+  - label: "Very short: >0 to <2"
+    greater_than: 0
+    less_than: 2
+  - label: "Short: 2 to <5"
+    greater_than_or_equal: 2
+    less_than: 5
+  - label: "Medium: 5 to <10"
+    greater_than_or_equal: 5
+    less_than: 10
+  - label: "Long: 10 to <20"
+    greater_than_or_equal: 10
+    less_than: 20
+  - label: "Very long: 20+"
+    greater_than_or_equal: 20
+
+passenger_groups: [Missing, "0", "1", "2", "3", "4", "5", "6", "7+"]
+passenger_grouping:
+  missing: Missing
+  zero: "0"
+  one_to_six: rounded_nullable_integer
+  all_other_values: "7+"
+
+processed_output:
+  format: parquet
+  partition_columns: [pickup_year, pickup_month]
+  quality_summary_fields:
+    - file_name
+    - source_year
+    - source_month
+    - raw_rows
+    - structurally_valid_rows
+    - missing_timestamp_rows
+    - invalid_time_order_rows
+    - out_of_month_rows
+    - missing_location_rows
+    - non_positive_distance_rows
+    - non_positive_fare_rows
+    - missing_passenger_rows
+    - zero_passenger_rows
+    - unmatched_pickup_zone_rows

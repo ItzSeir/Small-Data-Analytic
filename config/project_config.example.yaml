@@ -1,0 +1,13 @@
+# Copy to project_config.yaml and set environment-specific locations outside Git.
+paths:
+  raw_data: data/raw
+  taxi_zone_lookup: data/raw/taxi_zone_lookup.csv
+  processed_output: results/preprocessing/processed
+  quality_output: results/preprocessing/monthly_quality
+  profile_output: results/profile
+  analysis_output: results/analysis
+  benchmark_output: results/benchmarks
+
+execution:
+  preprocessing_rules_file: config/preprocessing_rules.yaml
+  log_level: INFO
