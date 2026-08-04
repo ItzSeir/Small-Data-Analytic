@@ -1,0 +1,10 @@
+*.pem
+.env
+credentials*
+aws_access*
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+raw_data/
+*.parquet
+.venv/
