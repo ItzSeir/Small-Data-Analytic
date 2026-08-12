@@ -1,0 +1,37 @@
+== Physical Plan ==
+AdaptiveSparkPlan (5)
++- HashAggregate (4)
+   +- Exchange (3)
+      +- HashAggregate (2)
+         +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [2]: [pickup_year#20, pickup_month#21]
+Batched: true
+Location: InMemoryFileIndex [hdfs://master:9000/data/nyc/processed/yellow_clean]
+ReadSchema: struct<>
+
+(2) HashAggregate
+Input [2]: [pickup_year#20, pickup_month#21]
+Keys [2]: [pickup_year#20, pickup_month#21]
+Functions [1]: [partial_count(1)]
+Aggregate Attributes [1]: [count#195L]
+Results [3]: [pickup_year#20, pickup_month#21, count#196L]
+
+(3) Exchange
+Input [3]: [pickup_year#20, pickup_month#21, count#196L]
+Arguments: hashpartitioning(pickup_year#20, pickup_month#21, 4), ENSURE_REQUIREMENTS, [plan_id=122]
+
+(4) HashAggregate
+Input [3]: [pickup_year#20, pickup_month#21, count#196L]
+Keys [2]: [pickup_year#20, pickup_month#21]
+Functions [1]: [count(1)]
+Aggregate Attributes [1]: [count(1)#181L]
+Results [3]: [pickup_year#20, pickup_month#21, count(1)#181L AS trip_count#186L]
+
+(5) AdaptiveSparkPlan
+Output [3]: [pickup_year#20, pickup_month#21, trip_count#186L]
+Arguments: isFinalPlan=false
+
+

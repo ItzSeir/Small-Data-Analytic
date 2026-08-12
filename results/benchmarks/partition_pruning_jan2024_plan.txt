@@ -1,0 +1,21 @@
+== Physical Plan ==
+* Project (3)
++- * ColumnarToRow (2)
+   +- Scan parquet  (1)
+
+
+(1) Scan parquet 
+Output [34]: [VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3, trip_distance#4, RatecodeID#5, store_and_fwd_flag#6, PULocationID#7, DOLocationID#8, payment_type#9, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, airport_fee#18, cbd_congestion_fee#19, pickup_date#22, pickup_hour#23, weekend#24, trip_duration_min#25, valid_distance#26, valid_fare#27, distance_band#28, passenger_group#29, source_month#30, pickup_Borough#31, pickup_Zone#32, pickup_service_zone#33, pickup_year#20, pickup_month#21]
+Batched: true
+Location: InMemoryFileIndex [hdfs://master:9000/data/nyc/processed/yellow_clean]
+PartitionFilters: [isnotnull(pickup_year#20), isnotnull(pickup_month#21), (pickup_year#20 = 2024), (pickup_month#21 = 1)]
+ReadSchema: struct<VendorID:int,tpep_pickup_datetime:timestamp,tpep_dropoff_datetime:timestamp,passenger_count:double,trip_distance:double,RatecodeID:int,store_and_fwd_flag:string,PULocationID:int,DOLocationID:int,payment_type:int,fare_amount:double,extra:double,mta_tax:double,tip_amount:double,tolls_amount:double,improvement_surcharge:double,total_amount:double,congestion_surcharge:double,airport_fee:double,cbd_congestion_fee:double,pickup_date:date,pickup_hour:int,weekend:boolean,trip_duration_min:double,valid_distance:boolean,valid_fare:boolean,distance_band:string,passenger_group:string,source_month:string,pickup_Borough:string,pickup_Zone:string,pickup_service_zone:string>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [34]: [VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3, trip_distance#4, RatecodeID#5, store_and_fwd_flag#6, PULocationID#7, DOLocationID#8, payment_type#9, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, airport_fee#18, cbd_congestion_fee#19, pickup_date#22, pickup_hour#23, weekend#24, trip_duration_min#25, valid_distance#26, valid_fare#27, distance_band#28, passenger_group#29, source_month#30, pickup_Borough#31, pickup_Zone#32, pickup_service_zone#33, pickup_year#20, pickup_month#21]
+
+(3) Project [codegen id : 1]
+Output [34]: [VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3, trip_distance#4, RatecodeID#5, store_and_fwd_flag#6, PULocationID#7, DOLocationID#8, payment_type#9, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, airport_fee#18, cbd_congestion_fee#19, pickup_year#20, pickup_month#21, pickup_date#22, pickup_hour#23, weekend#24, trip_duration_min#25, valid_distance#26, valid_fare#27, distance_band#28, passenger_group#29, source_month#30, pickup_Borough#31, pickup_Zone#32, pickup_service_zone#33]
+Input [34]: [VendorID#0, tpep_pickup_datetime#1, tpep_dropoff_datetime#2, passenger_count#3, trip_distance#4, RatecodeID#5, store_and_fwd_flag#6, PULocationID#7, DOLocationID#8, payment_type#9, fare_amount#10, extra#11, mta_tax#12, tip_amount#13, tolls_amount#14, improvement_surcharge#15, total_amount#16, congestion_surcharge#17, airport_fee#18, cbd_congestion_fee#19, pickup_date#22, pickup_hour#23, weekend#24, trip_duration_min#25, valid_distance#26, valid_fare#27, distance_band#28, passenger_group#29, source_month#30, pickup_Borough#31, pickup_Zone#32, pickup_service_zone#33, pickup_year#20, pickup_month#21]
+
+
