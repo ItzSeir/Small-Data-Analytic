@@ -1,0 +1,1 @@
+{"fields":[{"metadata":{},"name":"LocationID","nullable":true,"type":"integer"},{"metadata":{},"name":"Borough","nullable":true,"type":"string"},{"metadata":{},"name":"Zone","nullable":true,"type":"string"},{"metadata":{},"name":"service_zone","nullable":true,"type":"string"}],"type":"struct"}

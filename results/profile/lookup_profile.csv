@@ -1,0 +1,2 @@
+row_count,column_count,columns,distinct_location_ids,duplicate_location_ids,null_location_ids
+265,4,LocationID|Borough|Zone|service_zone,265,0,0
