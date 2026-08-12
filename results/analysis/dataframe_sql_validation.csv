@@ -1,0 +1,5 @@
+analysis,dataframe_row_count,sql_row_count,count_totals_match,numeric_validation,status
+monthly_trip_demand,24,24,True,PASS,PASS
+hourly_weekend_demand,48,48,True,PASS,PASS
+pickup_borough_summary,8,8,True,PASS,PASS
+distance_band_summary,6,6,True,PASS,PASS
