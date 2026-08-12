@@ -1,5 +1,5 @@
 """
-B4 - pandas scalability benchmark.
+pandas scalability benchmark
 
 Benchmark scales
 ----------------
