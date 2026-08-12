@@ -1,5 +1,5 @@
 """
-B2 - Independent pandas baseline for January 2024.
+Independent pandas baseline for January 2024.
 
 Purpose
 -------
