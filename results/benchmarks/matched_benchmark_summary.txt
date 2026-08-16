@@ -1,0 +1,33 @@
+IST3134 MATCHED SPARK–PANDAS BENCHMARK SUMMARY
+
+Matched workload:
+- Same corresponding monthly Yellow Taxi Parquet files
+- Same structural-validity rules
+- Count structurally valid rows
+- Aggregate pickup locations
+- Join Taxi Zone Lookup
+- Return the leading pickup zone
+- SparkSession startup and lookup preparation excluded from timed section
+
+Spark clean median runtimes:
+1 month: 15.634926 s
+3 months: 28.577788 s
+6 months: 48.814859 s
+12 months: 93.906438 s
+24 months: 191.775759 s
+
+Validation:
+PASS at all five scales for structurally valid row count, leading pickup zone and top-zone trip count.
+
+24-month fault-recovery note:
+One 666.948375-second observation was excluded from the performance summary because the executor exited with code 137 during that observation. YARN recovered and the analytical result remained correct. A clean replacement observation of 211.714533 seconds was collected, and the final 24-month median was calculated from three clean observations.
+
+Spark benchmark resource configuration:
+- two-node EC2 Hadoop/HDFS/YARN environment
+- one t3.small master
+- one t3.small worker
+- one executor
+- one executor core
+- 512 MB executor memory
+- 256 MB executor overhead
+- 768 MB driver memory

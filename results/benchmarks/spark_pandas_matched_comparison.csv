@@ -1,0 +1,6 @@
+months,period,valid_rows,pandas_runtime_seconds,spark_median_seconds,spark_over_pandas_runtime_ratio,top_pickup_zone,top_pickup_zone_trips,validation_status,comparison_note
+1,2024-01,2961858,0.464,15.634926,33.696,JFK Airport,145025,PASS,Observed runtimes on different execution environments; ratio is descriptive and not a controlled hardware-to-hardware speedup.
+3,2024-01 through 2024-03,9546211,1.368,28.577788,20.890,Midtown Center,453523,PASS,Observed runtimes on different execution environments; ratio is descriptive and not a controlled hardware-to-hardware speedup.
+6,2024-01 through 2024-06,20313815,3.040,48.814859,16.058,Midtown Center,954242,PASS,Observed runtimes on different execution environments; ratio is descriptive and not a controlled hardware-to-hardware speedup.
+12,2024-01 through 2024-12,41132445,5.937,93.906438,15.817,JFK Airport,1987052,PASS,Observed runtimes on different execution environments; ratio is descriptive and not a controlled hardware-to-hardware speedup.
+24,2024-01 through 2025-12,89291810,12.814,191.775759,14.966,JFK Airport,4034602,PASS,Observed runtimes on different execution environments; ratio is descriptive and not a controlled hardware-to-hardware speedup.
