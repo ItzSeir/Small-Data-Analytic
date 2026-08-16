@@ -1,0 +1,136 @@
+IST3134 BIG DATA ANALYTICS IN THE CLOUD
+NYC YELLOW TAXI PROJECT — SUBMISSION EVIDENCE INDEX
+
+This evidence package contains the final, relevant screenshots and compact result files supporting the submitted report. Blank, misleading, duplicate, obsolete and internal handover files have been removed. No raw Parquet dataset, AWS credentials, session tokens, PEM/private-key files or large runtime logs are included.
+
+MAIN REPORT EVIDENCE
+
+E11_PROFILE_SUMMARY.png
+Report: Figure 2.2.1
+Purpose: Spark raw-data profiling summary for the 24-month dataset.
+
+E12_SCHEMA_VARIANTS.png
+Report: Figure 2.2.2
+Purpose: Two raw schema variants identified across 2024 and 2025.
+
+E27_GITHUB_SPARK_SCRIPTS.png
+Report: Figure 4.1.1
+Purpose: Final PySpark source scripts available in the Spark development branch.
+
+E01_S3_BUCKET_RAW_DATA.png
+Report: Figure 4.2.1
+Purpose: Private S3 raw/yellow layer containing the 24 Yellow Taxi monthly Parquet files.
+
+E03_S3_SECURITY.png
+Report: Figure 4.2.2
+Purpose: S3 Block Public Access configuration.
+
+E05_EC2_CLUSTER.png
+Report: Figure 4.3.1
+Purpose: Final two-node t3.small EC2 cluster used for the successful Spark implementation.
+
+E63_FINAL_CLUSTER_RESOURCE_HEALTH.png
+Report: Figure 4.3.2
+Purpose: Final Hadoop/YARN cluster health, master/worker daemons and running YARN node.
+
+E13_PREPROCESSING_SUMMARY.png
+Report: Figure 4.4.1
+Purpose: Final preprocessing totals for all 24 monthly files.
+
+E21_DATAFRAME_SQL_VALIDATION.png
+Report: Figure 4.5.1
+Purpose: DataFrame-versus-Spark-SQL validation with all four analytical checks passing.
+
+E22_BENCHMARK_RESULTS.png
+Report: Figure 4.6.1
+Purpose: Observed Spark benchmark runtimes on the final two-node cluster.
+
+E23_PARTITION_PRUNING_PLAN.png
+Report: Figure 4.6.2
+Purpose: Spark physical-plan evidence showing January 2024 partition filters.
+
+E24_EXCHANGE_SHUFFLE_PLAN.png
+Report: Figure 4.6.3
+Purpose: Spark physical-plan evidence showing Exchange/shuffle in aggregation.
+
+E58_FINAL_CLEAN_SPARK_BENCHMARK.png
+Report: Figure 4.6.4
+Purpose: Final clean Spark matched benchmark with three clean observations per scale, medians and PASS validation.
+
+E60_CLEAN_24_MONTH_REPLACEMENT.png
+Report: Figure 4.6.5
+Purpose: Clean 24-month Spark replacement run after exclusion of the executor-exit-137 observation.
+
+E62_FINAL_SPARK_VALIDATION_SUMMARY.png
+Report: Figure 4.6.6
+Purpose: Final Spark median-runtime and validation summary.
+
+E32_GITHUB_DOCUMENTATION.png
+Report: Figure 4.9.1
+Purpose: Repository documentation supporting reproducibility.
+
+E61_EXECUTOR137_FAULT_RECOVERY.png
+Report: Figure 4.9.2
+Purpose: Executor-exit-137 recovery evidence; affected timing excluded from the clean performance series.
+
+E18_TOP20_PICKUP_ZONES.png
+Report: Figure 5.4.1
+Purpose: Spark top-20 pickup-zone analytical output.
+
+E19_BOROUGH_SUMMARY.png
+Report: Figure 5.4.2
+Purpose: Spark pickup-borough analytical output.
+
+E59_SPARK_PANDAS_MATCHED_COMPARISON.png
+Report: Figure 6.2.1
+Purpose: Matched Spark-versus-pandas scalability comparison with exact validation across all five scales.
+
+E57_CONTROLLED_SPARK_RESOURCE_CONFIGURATION.png
+Report: Figure 6.3.1
+Purpose: Controlled Spark resource configuration used for the matched scalability benchmark.
+
+SUPPORTING EVIDENCE
+
+E02_S3_REFERENCE_DATA.png
+Purpose: Private S3 reference layer containing taxi_zone_lookup.csv.
+
+E04_S3_ENCRYPTION.png
+Purpose: Default SSE-S3 bucket encryption configuration.
+
+E06_MASTER_JPS.png
+Purpose: Master daemon evidence: NameNode, SecondaryNameNode and ResourceManager.
+
+E07_WORKER_JPS.png
+Purpose: Worker daemon evidence: DataNode and NodeManager.
+
+E20_DISTANCE_BANDS.png
+Purpose: Saved Spark distance-band analytical output.
+
+E26_GITHUB_BRANCH.png
+Purpose: Repository branch context and project structure.
+
+E28_GITHUB_PROFILE_RESULTS.png
+Purpose: Profiling result artifacts available in the repository.
+
+E29_GITHUB_PREPROCESSING_RESULTS.png
+Purpose: Preprocessing result artifacts available in the repository.
+
+E30_GITHUB_ANALYSIS_RESULTS.png
+Purpose: Analysis result artifacts available in the repository.
+
+E31_GITHUB_BENCHMARK_RESULTS.png
+Purpose: Benchmark and physical-plan artifacts available in the repository.
+
+COMPACT RESULT FILES
+
+spark_matching_pandas_final_clean.csv
+Purpose: Three clean Spark observations per scale, medians, top-zone results and validation status.
+
+spark_pandas_matched_comparison.csv
+Purpose: Final matched Spark-versus-pandas runtime and validation comparison.
+
+E62_FINAL_SPARK_VALIDATION_SUMMARY.txt
+Purpose: Text summary of final Spark matched benchmark validation and excluded/replacement timing.
+
+E63_FINAL_CLUSTER_RESOURCE_HEALTH.txt
+Purpose: Text summary of final Hadoop/YARN daemon and resource state.
