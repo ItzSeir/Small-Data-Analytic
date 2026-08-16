@@ -1,0 +1,2 @@
+month,raw_rows,null_pickup_timestamp,null_dropoff_timestamp,dropoff_not_after_pickup,duration_nonpositive,duration_over_240,source_month_mismatch,null_PULocationID,null_DOLocationID,nonpositive_distance,nonpositive_fare,missing_passenger_count,structurally_valid_rows,structurally_removed_rows,unmatched_pickup_lookup
+2024-01,2964624,0,0,870,870,1878,18,0,0,60371,38341,140162,2961858,2766,10257

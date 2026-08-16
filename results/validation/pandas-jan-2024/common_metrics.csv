@@ -1,0 +1,2 @@
+source_period,raw_rows,valid_rows,busiest_pickup_hour,busiest_pickup_hour_trips,top_pickup_borough,top_pickup_zone,top_pickup_zone_trips
+2024-01,2964624,2961858,18,212616,Queens,JFK Airport,145025

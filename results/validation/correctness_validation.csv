@@ -1,0 +1,5 @@
+metric,spark_result,pandas_result,difference,rule,status,explanation
+Structurally valid rows,2961858,2961858,0,Exact,PASS,
+Busiest pickup hour,N/A,"18:00 (212,616 trips)",,Same hour and count,PENDING,January-only Spark hourly output was not found.
+Top pickup zone,N/A,"JFK Airport (145,025 trips)",,"Same zone and count, except documented ties",PENDING,January-only Spark top-zone output was not found.
+Average fare by distance band,N/A,Available in pandas January summary,,Absolute difference <= 0.01,PENDING,January-only Spark distance-band output was not found.
