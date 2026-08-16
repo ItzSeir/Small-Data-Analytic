@@ -1,3 +1,0 @@
-day_type,trip_count,number_of_days,avg_daily_trips,peak_hour,peak_hour_total_trips,peak_hour_avg_daily_trips,top_pickup_borough,top_pickup_zone,top_pickup_zone_trips,avg_valid_fare_amount,avg_valid_trip_distance,avg_trip_duration_min
-Weekday,63965901,523,122305.7380497132,18,4785733,9150.541108986616,Manhattan,Midtown Center,3194382,20.120995011273003,6.066389432681554,17.40250299452516
-Weekend,25325909,208,121759.1778846154,18,1598883,7686.9375,Queens,JFK Airport,1179506,20.039391306121143,6.368897322688422,15.937216717473005
