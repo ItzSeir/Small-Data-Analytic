@@ -1,70 +1,48 @@
-# Yeoh Jie Long — AWS/Spark Evidence Index
+# JL AWS / Spark Evidence Index
 
-Each entry records the project part, what the evidence proves, evidence type, and availability. No credentials or raw Parquet data are included.
+This index documents the final cleaned AWS/Spark evidence used to support the IST3134 report. Blank, misleading, duplicate and obsolete screenshots were removed before publication. No raw Parquet files, AWS credentials, session tokens or private-key files are included.
 
-## Part 4 — S3
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| Current Part 15 AWS Console raw/yellow view | Bucket \`nyc-taxi-017950536622-jielong-20260805\`, raw/yellow prefix and 24 Parquet objects | Screenshot/output | AVAILABLE |
-| Current Part 15 AWS Console reference view | \`taxi_zone_lookup.csv\` exists under reference | Screenshot/output | AVAILABLE |
-| Current Part 15 S3 Permissions view | Block Public Access is On; bucket-owner enforcement blocks public access | Screenshot/output | AVAILABLE |
-| Current Part 15 S3 Properties view | Default SSE-S3 encryption is enabled | Screenshot/output | AVAILABLE |
+## Main report evidence
 
-## Part 5 — Cluster / HDFS / YARN / Spark
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| Current Part 15 EC2 Instances view | nyc-master \`i-0130507b6de6a79a3\` and nyc-slave1 \`i-048b900fcc5a38f15\` are Running, t3.small, 3/3 checks passed | Screenshot/output | AVAILABLE |
-| Master and worker jps outputs | NameNode, SecondaryNameNode, ResourceManager, DataNode and NodeManager topology | Output | AVAILABLE |
-| HDFS report and YARN node list | One live DataNode and one running YARN node | Output | AVAILABLE |
-| HDFS/Spark smoke tests | HDFS text read, Spark master yarn, count 1000 | Output | AVAILABLE |
-| EMR cluster j-2O93TR9KEVKN6 | Failed methodology attempt; TERMINATED_WITH_ERRORS / INTERNAL_ERROR | Output | AVAILABLE (failure evidence) |
+| Evidence | Report location | Purpose |
+|---|---|---|
+| E11_PROFILE_SUMMARY.png | Figure 2.2.1 | Spark raw-data profiling summary for the 24-month dataset |
+| E12_SCHEMA_VARIANTS.png | Figure 2.2.2 | Two raw schema variants across 2024 and 2025 |
+| E27_GITHUB_SPARK_SCRIPTS.png | Figure 4.1.1 | Core PySpark source scripts in the Spark development branch |
+| E01_S3_BUCKET_RAW_DATA.png | Figure 4.2.1 | Private S3 raw layer containing the 24 monthly Parquet files |
+| E03_S3_SECURITY.png | Figure 4.2.2 | S3 Block Public Access configuration |
+| E05_EC2_CLUSTER.png | Figure 4.3.1 | Final two-node t3.small EC2 Spark cluster |
+| E63_FINAL_CLUSTER_RESOURCE_HEALTH.png | Figure 4.3.2 | Final Hadoop/YARN master/worker daemon and node health |
+| E13_PREPROCESSING_SUMMARY.png | Figure 4.4.1 | Spark preprocessing totals for all 24 months |
+| E21_DATAFRAME_SQL_VALIDATION.png | Figure 4.5.1 | DataFrame-versus-Spark-SQL validation |
+| E22_BENCHMARK_RESULTS.png | Figure 4.6.1 | Initial Spark benchmark runtimes |
+| E23_PARTITION_PRUNING_PLAN.png | Figure 4.6.2 | January 2024 partition-pruning physical plan |
+| E24_EXCHANGE_SHUFFLE_PLAN.png | Figure 4.6.3 | Exchange/shuffle physical-plan evidence |
+| E58_FINAL_CLEAN_SPARK_BENCHMARK.png | Figure 4.6.4 | Clean matched Spark benchmark across five scales |
+| E60_CLEAN_24_MONTH_REPLACEMENT.png | Figure 4.6.5 | Clean 24-month replacement run |
+| E62_FINAL_SPARK_VALIDATION_SUMMARY.png | Figure 4.6.6 | Final Spark medians and validation summary |
+| E32_GITHUB_DOCUMENTATION.png | Figure 4.9.1 | Repository execution/evidence documentation |
+| E61_EXECUTOR137_FAULT_RECOVERY.png | Figure 4.9.2 | Executor-exit-137 recovery evidence |
+| E18_TOP20_PICKUP_ZONES.png | Figure 5.4.1 | Spark top-20 pickup-zone output |
+| E19_BOROUGH_SUMMARY.png | Figure 5.4.2 | Spark pickup-borough output |
+| E59_SPARK_PANDAS_MATCHED_COMPARISON.png | Figure 6.2.1 | Final matched Spark-versus-pandas comparison |
+| E57_CONTROLLED_SPARK_RESOURCE_CONFIGURATION.png | Figure 6.3.1 | Controlled Spark benchmark resource configuration |
 
-## Part 6 — Profiling
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| profile_summary.txt and profile CSV/JSON outputs | 24 months, 89,892,322 raw rows, 2 schema variants | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-| lookup_profile.csv and lookup_schema.json | 265 lookup rows/IDs, 0 duplicate, 0 null LocationID | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-| HDFS profile listing | Profile results stored under /data/nyc/results/profile | Output | AVAILABLE |
+## Supporting evidence
 
-## Parts 7–8 — Preprocessing
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| monthly_quality.csv and preprocessing_summary.txt | 24 months, 89,291,810 valid, 600,512 removed; retained non-positive flag counts; 0 unmatched pickups | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-| Clean HDFS listing and size | 24 year/month partitions and 2.1 GB logical / 4.2 GB replicated output | Output | AVAILABLE |
-| Clean row validation | Output count equals 89,291,810 | Output | AVAILABLE |
-| December executor recovery | Heartbeat timeout recovered by YARN replacement | Output | AVAILABLE |
+- E02_S3_REFERENCE_DATA.png — S3 reference layer containing `taxi_zone_lookup.csv`
+- E04_S3_ENCRYPTION.png — default SSE-S3 bucket encryption
+- E06_MASTER_JPS.png — master daemons
+- E07_WORKER_JPS.png — worker daemons
+- E20_DISTANCE_BANDS.png — Spark distance-band output
+- E26_GITHUB_BRANCH.png — Spark branch context
+- E28_GITHUB_PROFILE_RESULTS.png — repository profiling artifacts
+- E29_GITHUB_PREPROCESSING_RESULTS.png — repository preprocessing artifacts
+- E30_GITHUB_ANALYSIS_RESULTS.png — repository analytical artifacts
+- E31_GITHUB_BENCHMARK_RESULTS.png — repository benchmark/physical-plan artifacts
 
-## Parts 9–10 — Analytics / Spark SQL
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| Analysis CSV tables | Monthly, hourly/weekend, borough, top zones, distance bands, passenger groups and payment types | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-| dataframe_sql_validation.csv | All four DataFrame-vs-SQL comparisons PASS; totals equal 89,291,810 | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-| HDFS analysis listing | Small analysis outputs persisted | Output | AVAILABLE |
+## Compact matched-benchmark artifacts
 
-## Part 11 — Benchmark
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| benchmark_results.csv and summary | Single-run observed timings: Jan 2024 3.125253 s; 2024 1.108304 s; DataFrame 5.322686 s; SQL 3.345567 s | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-| Four formatted physical plan files | Partition-pruning and Exchange/shuffle evidence | File/output | AVAILABLE on EC2/HDFS; pending safe GitHub transfer |
-
-Interpretation: timings are single-run observations on the two-node Learner Lab cluster; physical plans are stronger evidence than timing for partition pruning and shuffle behavior.
-
-## Part 12 — Handover
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| Handover folder, README and manifest | 16 small result files prepared for Jin Yon | File/output | AVAILABLE on EC2/HDFS |
-| nyc_handover_to_jinyon.tar.gz | 5.9 KB archive; no raw Parquet or credentials | File/output | AVAILABLE on EC2 |
-
-## Part 14 — Consolidation
-| Evidence | Proves | Type | Availability |
-|---|---|---|---|
-| This index and Part 15 console captures | Completed evidence inventory, with Part 4/5 screenshot gaps closed | Documentation/screenshot | AVAILABLE |
-
-## Missing / deferred GitHub transfers
-The following safe, EC2-derived files require a later approved transfer method; no attempt should move raw data, credentials, PEM files, or runtime logs:
-- Four Spark source scripts under \`src/spark/\`.
-- Seven profile-result files under \`results/profile/\`.
-- Two preprocessing-result files under \`results/preprocessing/\`.
-- Eight analysis-result files under \`results/analysis/\`.
-- Six benchmark and physical-plan files under \`results/benchmarks/\`.
-
+- `results/benchmarks/spark_matching_pandas_final_clean.csv`
+- `results/benchmarks/spark_pandas_matched_comparison.csv`
+- `results/benchmarks/matched_benchmark_summary.txt`
