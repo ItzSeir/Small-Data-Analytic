@@ -1,28 +1,77 @@
-# IST3134 - NYC Taxi Big Data (Small-Data Analytic)
+# IST3134 Big Data Analytics in the Cloud
 
-Project members
-- Jie Long (JieLong615)
-- Ooi Jin Yon
-- (add other members here)
+## Cloud-Based Big Data Analysis of NYC TLC Yellow Taxi Trip Record Data
 
-Platforms
-- Local development (Python, Jupyter)
-- AWS (S3 for storage; EC2/EMR or Glue for processing)
-- Optional: Databricks / Google Colab
+This repository supports the IST3134 group assignment using NYC Taxi and Limousine Commission (TLC) Yellow Taxi Trip Records from January 2024 to December 2025.
 
-Dataset (official TLC page)
-- NYC TLC Trip Record Data: https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+## Team
 
-Project structure
-- config/        - configuration files
-- data/          - small sample data used in repo (raw_data is ignored)
-- src/spark/     - Spark notebooks / scripts
-- src/pandas/    - pandas notebooks / scripts
-- src/visualisation/ - visualisation scripts
-- sql/           - SQL queries
-- results/       - result folders (profile, cleaning, analysis, benchmarks, validation)
-- evidence/      - evidence files (AWS screenshots, notebooks)
-- docs/          - additional documentation
+- Yeoh Jie Long (22071112) — AWS, Hadoop/HDFS/YARN, PySpark and Spark SQL
+- Ooi Jin Yon (22039069) — Python pandas, visualisation and comparison
 
-Security & excluded files
-- Raw Parquet files, credentials and keys are excluded by .gitignore.
+## Dataset
+
+- NYC TLC Yellow Taxi Trip Records
+- Period: January 2024 to December 2025
+- 24 monthly Parquet files
+- Taxi Zone Lookup CSV
+- Official dataset source: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+
+The raw monthly Parquet files are not stored in this repository. A verified dataset manifest and selected-file list are provided so the public dataset can be reproduced without duplicating the large raw files.
+
+## Final Processing Architecture
+
+Amazon S3 → EC2 Hadoop/HDFS/YARN → PySpark / Spark SQL → partitioned processed Parquet and compact analytical outputs.
+
+The full-data Spark implementation was executed on a self-managed two-node EC2 Hadoop/HDFS/YARN cluster in AWS Academy Learner Lab.
+
+The comparison implementation used local Python with pandas, PyArrow and Matplotlib.
+
+## Key Results
+
+- Raw records: 89,892,322
+- Structurally valid records: 89,291,810
+- Selected period: January 2024 to December 2025
+- Busiest full-period pickup hour: 18:00
+- Leading full-period pickup zone: JFK Airport
+- January 2024 Spark-versus-pandas correctness validation: exact agreement for structurally valid rows and leading pickup zone
+- Matched 1-, 3-, 6-, 12- and 24-month Spark-versus-pandas scalability benchmark: PASS at every scale for valid rows, leading pickup zone and top-zone trip count
+
+## Repository Structure
+
+- `config/` — preprocessing rules and example project configuration
+- `data/` — dataset manifest and selected-file list; raw data excluded
+- `src/spark/` — Spark profiling, preprocessing, analysis and benchmark scripts
+- `src/pandas/` — pandas implementation
+- `src/visualisation/` — visualisation scripts
+- `tests/` — preprocessing boundary and output-schema tests
+- `results/profile/` — compact Spark profiling outputs
+- `results/preprocessing/` — compact preprocessing outputs
+- `results/analysis/` — compact analytical outputs
+- `results/benchmarks/` — Spark benchmark outputs, physical plans and matched comparison outputs
+- `evidence/` — cleaned submission evidence and evidence index
+- `docs/` — preprocessing documentation, execution log and evidence documentation
+- `report/` — final submitted report when formatting is complete
+
+## Spark Development Branch
+
+The AWS/Spark implementation is maintained on the `jie-long-spark` branch.
+
+Core Spark scripts include:
+
+- `src/spark/profile_raw_data.py`
+- `src/spark/preprocess_yellow_taxi.py`
+- `src/spark/analyse_yellow_taxi.py`
+- `src/spark/benchmark_spark.py`
+
+## Reproducibility and Security
+
+The repository intentionally excludes:
+
+- raw Yellow Taxi Parquet files
+- the large processed Parquet dataset
+- AWS access keys, secret keys and session tokens
+- PEM/private-key files
+- large Spark/YARN runtime logs
+
+Only source code, configuration, compact results, documentation and submission evidence are retained.
