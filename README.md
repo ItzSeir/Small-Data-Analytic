@@ -35,10 +35,11 @@ The pandas and Spark implementations were developed separately within the same s
 - Spark and pandas January 2024 correctness validation: exact agreement
 - Matched 1-, 3-, 6-, 12- and 24-month scalability validation: PASS at all scales
 
-## Code Locations
-
-- pandas: [src/pandas/](src/pandas/)
-- visualisation: [src/visualisation/](src/visualisation/)
+## Locations
+- NYC Taxi Dataset: [data/](data/)
+- Final Report: [docs/](docs/)
+- pandas: [code/](code/)
+- pandas result: [results/](results/)
 - Spark: [jie-long-spark/src/spark/](https://github.com/ItzSeir/Small-Data-Analytic/tree/jie-long-spark/src/spark)
 - Spark evidence: [jie-long-spark/evidence/](https://github.com/ItzSeir/Small-Data-Analytic/tree/jie-long-spark/evidence)
 - Spark results: [jie-long-spark/results/](https://github.com/ItzSeir/Small-Data-Analytic/tree/jie-long-spark/results)
