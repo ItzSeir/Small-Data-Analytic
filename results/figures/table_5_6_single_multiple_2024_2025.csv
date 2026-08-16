@@ -1,0 +1,3 @@
+passenger_group,trip_count,share_of_valid_1_to_6_pct,avg_valid_fare_amount,avg_valid_trip_distance,avg_trip_duration_min
+Single passenger,57570888,78.93305760066455,19.222363530612284,3.45779324083646,16.43471663432856
+Multiple passengers (2-6),15365458,21.06694239933544,22.64090850982651,3.995912320891318,18.06767607469516
