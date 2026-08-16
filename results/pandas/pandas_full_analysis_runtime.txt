@@ -1,0 +1,8 @@
+PANDAS FULL 2024-2025 ANALYSIS RUNTIME
+=======================================
+Months processed: 24
+Raw rows: 89,892,322
+Structurally valid rows: 89,291,810
+Total runtime: 527.370 seconds
+Total runtime: 8.789 minutes
+Total runtime (HH:MM:SS): 00:08:47.370

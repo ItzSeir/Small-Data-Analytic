@@ -1,0 +1,2 @@
+source_period,months_processed,raw_rows,valid_rows,busiest_pickup_hour,busiest_pickup_hour_trips,top_pickup_borough,top_pickup_zone,top_pickup_zone_trips
+2024-01_to_2025-12,24,89892322,89291810,18,6384616,Queens,JFK Airport,4034602
